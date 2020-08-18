@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+<body>
+
+<script src="./proxy.js"></script>
+<script>
+
+    const school = [
+        { id: 1, name: '北京大学' },
+        { id: 2, name: '河北大学' },
+        {
+            test1: {
+                name: 'test1',
+                test2: {
+                    name: 'test2',
+                    test3: {
+                        name: 'test3'
+                    }
+                }
+            }
+        }
+    ]
+    const data = DataProxy({ name: 'tom', age: 13, text: { school: school } }, (val) => {
+        console.log(val)
+    });
+    data.numes = 'ss';
+   
+    // watch(data.text.school[2].test1.test2, 'name', (val) => {
+    //     console.log('新值',val.value)
+    // })
+    // watch(data.text.school, (val) => {
+    //     console.log(22222, val.data[0])
+    // })
+    watch(data.text.school[0], 'name', (value) => {
+        console.log('监听school[0].name',value)
+    })
+ 
+    
+</script>
+</body>
+</html>
